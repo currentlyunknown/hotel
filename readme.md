@@ -2,7 +2,7 @@
 
 This app is an API for a hotel that allows to create bookings with rooms and customers and retrieve the data.<br>
 It allows to CRUD the info for customers, rooms and bookings in your local PostgreSQL database (it will create the DB for you if not present).<br>
-Stack used: FastAPI, PostgreSQL, unittest<br>
+Stack used: FastAPI, PostgreSQL, pytest<br>
 
 # Installing
 

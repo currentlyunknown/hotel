@@ -1,7 +1,7 @@
 """
 Employee class tests.
 """
-import unittest
+import pytest
 
 from hotel.db.db_interface import DataObject
 from hotel.operations.bookings import create_booking
@@ -44,7 +44,7 @@ class BookingInterface:
         raise NotImplementedError()
 
 
-class TestBooking(unittest.TestCase):
+class TestBooking:
     def test_price_one_day(self):
         booking_data = BookingCreateData(
             room_id=1,
@@ -52,24 +52,24 @@ class TestBooking(unittest.TestCase):
             from_date="2020-01-01",
             to_date="2020-01-02",
         )
-        booking = create_booking(booking_data, RoomInterface(), BookingInterface())
-        self.assertEqual(booking.price, 150_00)
+        self.booking = create_booking(booking_data, RoomInterface(), BookingInterface())
+        assert self.booking.price == 150_00
 
     def test_date_value_error(self):
-        booking_data = BookingCreateData(
+        wrong_booking_data = BookingCreateData(
             room_id=1,
             customer_id=1,
             from_date="2020-01-01",
             to_date="2020-01-01",
         )
-        self.assertRaises(
+        assert pytest.raises(
             ValueError,
             create_booking,
-            booking_data,
+            wrong_booking_data,
             RoomInterface(),
             BookingInterface(),
         )
 
 
 if __name__ == "__main__":
-    unittest.main()
+    pytest.main()

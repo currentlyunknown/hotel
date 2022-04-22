@@ -11,7 +11,7 @@ create_db(SQLALCHEMY_DATABASE_URI)
 
 
 @app.on_event("startup")
-async def startup_event():
+def startup_event():
     init_db(SQLALCHEMY_DATABASE_URI)
 
 
